@@ -1,5 +1,5 @@
-local config = require 'config'
-local islandIpls = require 'data.ipl'
+local config = lib.load('config')
+local islandIpls = lib.load('data.ipl')
 local playerState = LocalPlayer.state
 
 local function requestIpls()
@@ -57,13 +57,6 @@ local function enableRadioStations(bool)
     AddTextEntry('MO_RADOFF', text)
 end
 
-local function isNearIsland()
-    local coords = GetEntityCoords(cache.ped)
-    local distance = #(coords - config.islandCoords)
-
-    return distance < 2000
-end
-
 ---@param bool boolean
 local function enableIslandFeatures(bool)
     playerState.onCayoPerico = bool
@@ -97,17 +90,16 @@ local function enableIslandMap()
     end
 end
 
-SetInterval(function()
-    local nearIsland = isNearIsland()
-
-    if not playerState.onCayoPerico then
-        if nearIsland then
-            enableIslandFeatures(true)
-        end
-    elseif not nearIsland then
+lib.points.new({
+    coords = config.islandCoords,
+    distance = 2000,
+    onEnter = function()
+        enableIslandFeatures(true)
+    end,
+    onExit = function()
         enableIslandFeatures(false)
     end
-end, 2000)
+})
 
 CreateThread(function()
     SetZoneEnabled(GetZoneFromNameId('PrLog'), false)
