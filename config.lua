@@ -19,7 +19,7 @@ return {
         }
     },
     radioStations = {
-        disable = true, -- Set to false if you wish to use radio stations on the island unaltered.
+        disable = false, -- Set to false if you wish to use radio stations on the island unaltered.
         showNoSignal = true, -- Set to false if you wish to just disable the radio entirely.
         stations = { -- If you want to keep certain radio stations you can set their bool to false below. (Doing this will ignore the showNoSignal option)
             ['RADIO_01_CLASS_ROCK'] = true, -- Los Santos Rock Radio
