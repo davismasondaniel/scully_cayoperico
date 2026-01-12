@@ -1,6 +1,6 @@
 return {
     islandCoords = vec3(4840.571, -5174.425, 2.0),
-    enableMap = true, -- You can set this to false if you are using some other map such as the ones from TheFlyBandit.
+    enableMap = false, -- You can set this to false if you are using some other map such as the ones from TheFlyBandit.
     entitySets = {
         {
             enable = false,
